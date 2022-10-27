@@ -1,0 +1,92 @@
+<div class="habilidades">
+  <div class="container">
+    <div class="row">
+      <h4 class="display-6 titulo">Habilidades
+        <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn" data-bs-toggle="modal"
+          data-bs-target="#addHab">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </h4>
+    </div>
+
+    <!-- Ventana emergente Nueva Habilidad -->
+
+    <div class="modal fade" id="addHab" tabindex="-1" aria-labelledby="nuevaHabilidadLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form (ngSubmit)="crearHab()" novalidate #f="ngForm">
+            <div class="modal-header">
+              <h5 class="modal-title">Añadir Habilidad</h5>
+              <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                <h4>x</h4>
+              </button>
+            </div>
+            <div class="modal-body  form-group">
+              <label for="nivel">Nombre de Habilidad</label>
+              <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="nombre" required>
+              <label for="institucion">Porcentaje Progreso</label>
+              <input class="form-control" type="text" id="porcentaje" name="porcentaje" [(ngModel)]="porcentaje"
+                required>
+              <label for="imagen">Imagen</label>
+              <input class="form-control" type="text" id="imagen" name="imagen" [(ngModel)]="imagen" required>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Listado de experiecias -->
+  <div class="container">
+    <div class="text-center row">
+      <div class="col-4" *ngFor="let Habilidad of hab">
+        <h4>{{ Habilidad.nombre}}</h4>
+        <circle-progress [percent]="(Habilidad.porcentaje)" [radius]="80" [showImage]="true"
+          imageSrc="{{Habilidad.imagen}}" title="{{Habilidad.nombre}}" [titleColor]="'#212F3C'" [showTitle]="false"
+          [imageHeight]="80" [imageWidth]="80" [showUnits]="false" [showSubtitle]="false" [outerStrokeWidth]="10"
+          [innerStrokeWidth]="2" [outerStrokeColor]="'#39459b'" [innerStrokeColor]="'#0d99d7'" [animation]="true"
+          [animationDuration]="600">></circle-progress>
+        <!-- Button de editar -->
+        <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn" data-bs-toggle="modal"
+          data-bs-target="#editHab" (click)="tomarId(Habilidad.id)">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <!-- Button de borrar -->
+        <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn" (click)="eliminarHab(Habilidad.id)">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Ventana emergente Editar Habilidad -->
+    <div class="modal fade" id="editHab" tabindex="-1" aria-labelledby="editarHabilidadLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form (ngSubmit)="editarHab()" novalidate #f="ngForm">
+            <div class="modal-header">
+              <h5 class="modal-title">Editar Habilidad</h5>
+              <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                <h4>x</h4>
+              </button>
+            </div>
+            <div class="modal-body  form-group">
+              <label for="editNombre">Nombre de Habilidad</label>
+              <input class="form-control" type="text" id="editNombre" name="editNombre" [(ngModel)]="editNombre"
+                required>
+              <label for="editPorcentaje">Porcentaje Progreso</label>
+              <input class="form-control" type="text" id="editPorcentaje" name="editPorcentaje"
+                [(ngModel)]="editPorcentaje" required>
+              <label for="editImagen">Imagen</label>
+              <input class="form-control" type="text" id="editImagen" name="editImagen" [(ngModel)]="editImagen"
+                required>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="encabezado row"> <!--los links de las imagenes no estan mal. No tengo redes sociales-->
+    <div div class="col-lg-3 align-items-center d-flex justify-content-around p-2 w-5">
+        <a href="https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa"><img src="../../assets/Arg-Prog-transparente.png" alt="argentina_programa" width="50%"></a>
+    </div>
+    <div div class="col-lg-5"></div>
+    <div div class="col-lg-4 align-items-center d-flex justify-content-around p-2 w-5">
+        <a href="https://twitter.com/"> <img src="../../assets/Twitter.png" alt="argentina_programa" width="60%" ></a>
+        <a href="https://facebook.com/"> <img src="../../assets/Facebook.png" alt="argentina_programa" width="60%" ></a>
+        <a href="https://linkeIn.com/"> <img src="../../assets/LinkedIn.png" alt="argentina_programa" width="60%" ></a>
+        <a href="https://Instagram.com/"> <img src="../../assets/Instagram.png" alt="argentina_programa" width="60%" ></a>
+        <a *ngIf="!isLogged" href="/login" class="btn btn-dark btn-sm">Ingresar</a>
+        <a *ngIf="isLogged" href="/login" (click)="onLogout()" class="btn btn-dark btn-sm">Cerrar Sesión</a>
+    </div>
+</div>

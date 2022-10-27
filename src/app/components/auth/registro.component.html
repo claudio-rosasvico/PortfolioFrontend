@@ -1,0 +1,86 @@
+<div class="text-center" *ngIf="isLogged ; else loggedOut">
+  <h2>Ya has iniciado sesión</h2>
+</div>
+<ng-template #loggedOut>
+  <div class="wrapper">
+    <div class="inner">
+      <form #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+        <h3>CREA TU CUENTA</h3>
+        <div class="form-group">
+          <label for="nombre">
+            <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)]="nombre" required>
+            <span>Nombre</span>
+            <span class="border"></span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="nombreUsuario">
+            <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" [(ngModel)]="nombreUsuario"
+              required>
+            <span>Usuario</span>
+            <span class="border"></span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="email">
+            <input type="text" name="email" id="email" class="form-control" [(ngModel)]="email" required>
+            <span>Mail</span>
+            <span class="border"></span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="password">
+            <input type="text" name="password" id="password" class="form-control" [(ngModel)]="password" required>
+            <span>Contraseña</span>
+            <span class="border"></span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <button>Crear Cuenta</button>
+        </div>
+      </form>
+      <br>
+      <p>Si ya tenes cuenta, logueate aquí</p>
+      <button type="button" routerLink="/login">Login
+      </button>
+
+    </div>
+  </div>
+</ng-template>
+
+
+<!--<div class="wrapper loggedOut">
+  <div class="inner">
+      <form action="" #f="ngForm" (ngSubmit)="onRegister()" novalidate>
+          <h3>CREA TU CUENTA</h3>
+          <label class="form-group">
+              <input type="text" name="nombre" id="nombre" class="form-control"  [(ngModel)]="nombre" required>
+              <span for="nombre">Nombre</span>
+              <span class="border"></span>
+          </label>
+          <label class="form-group">
+            <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control"  [(ngModel)]="nombreUsuario" required>
+            <span for="nombreUsuario">Usuario</span>
+            <span class="border"></span>
+        </label>
+          <label class="form-group">
+              <input input type="password" name="password" id="password"  class="form-control"  [(ngModel)]="password" required>
+              <span for="password">Contraseña</span>
+              <span class="border"></span>
+          </label>
+          <label class="form-group">
+            <input input type="text" name="email" id="email"  class="form-control"  [(ngModel)]="email" required>
+            <span for="email">Correo Electrónico</span>
+            <span class="border"></span>
+        </label>
+          <button type="button" routerLink="/login">Crear Cuenta 
+          </button>
+          <br>
+          <p>Si ya tenes usuario, podes loguearte aquí</p>
+          <button type="button" routerLink="/login">Ingresar
+          </button>
+      </form>
+  </div>
+</div>
+-->

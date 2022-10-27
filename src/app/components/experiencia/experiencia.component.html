@@ -1,0 +1,115 @@
+<div class="experiencia">
+    <div class="container">
+        <div class="row">
+            <h5 class="display-6 titulo">Experiencia Laboral
+                <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn" data-bs-toggle="modal"
+                    data-bs-target="#addExp">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </h5>
+        </div>
+        <!-- Ventana emergente Nueva Experiencia-->
+        <div class="modal fade" id="addExp" tabindex="-1" aria-labelledby="editProfesionLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="crearExp()" novalidate #f="ngForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Añadir Experiencia</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                <h4>x</h4>
+                            </button>
+                        </div>
+                        <div class="modal-body  form-group">
+                            <label for="cargo">Cargo en la Institución</label>
+                            <input class="form-control" type="text" id="cargo" name="cargo" [(ngModel)]="cargo"
+                                required>
+                            <label for="institucionLaboral">Institución Laboral</label>
+                            <input class="form-control" type="text" id="institucionLaboral" name="institucionLaboral"
+                                [(ngModel)]="institucionLaboral" required>
+                            <label for="descripcion">Descripción</label>
+                            <input class="form-control" type="text" id="descripcion" name="descripcion"
+                                [(ngModel)]="descripcion" required>
+                            <label for="fechaInicio">Fecha de Inicio</label>
+                            <input class="form-control" type="date" id="fechaInicio" name="fechaInicio"
+                                [(ngModel)]="fechaInicio" required>
+                            <label for="fechaFinal">Fecha final</label>
+                            <input class="form-control" type="date" id="fechaFinal" name="fechaFinal"
+                                [(ngModel)]="fechaFinal" required>
+                            <label for="imagen">Imagen</label>
+                            <input class="form-control" type="text" id="imagen" name="imagen" [(ngModel)]="imagen"
+                                required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Listado de experiecias -->
+    <div class="container">
+        <div class="row  m-2" *ngFor="let Experiencia of exp">
+            <div class="col-1 d-none d-sm-block"><img src="{{Experiencia.imagen}}" alt="Ministerio Producción"
+                    width=100%>
+            </div>
+            <div class="col-5">
+                <h5><strong>{{Experiencia.institucionLaboral}}</strong></h5>
+                <p><strong>Cargo: </strong>{{Experiencia.cargo}}</p>
+                <p><strong>Año: </strong> {{Experiencia.fechaInicio}}</p>
+                <p><strong>Descripción: </strong>{{Experiencia.descripcion}}</p>
+            </div>
+            <div class="col-5"></div>
+            <div class="col-1">
+                <!-- Button de editar -->
+                <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn" data-bs-toggle="modal"
+                    data-bs-target="#editExp" (click)="tomarId(Experiencia.id)">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <!-- Button de borrar -->
+                <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn"
+                    (click)="eliminarExp(Experiencia.id)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        </div>
+        <!--Ventana emergente Editar Experiencia -->
+        <div class="modal fade" id="editExp" tabindex="-1" aria-labelledby="editExperienciaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="editarExp()" novalidate #f="ngForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar Experiencia</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                <h4>x</h4>
+                            </button>
+                        </div>
+                        <div class="modal-body  form-group">
+                            <label for="editCargo">Cargo en la Institución</label>
+                            <input class="form-control" type="cargo" id="editCargo" name="editCargo"
+                                [(ngModel)]="editCargo" required>
+                            <label for="editInstitucionLaboral">Institución Laboral</label>
+                            <input class="form-control" type="text" id="editInstitucionLaboral"
+                                name="editInstitucionLaboral" [(ngModel)]="editInstitucionLaboral" required>
+                            <label for="editDescripcion">Descripción</label>
+                            <input class="form-control" type="text" id="editDescripcion" name="editDescripcion"
+                                [(ngModel)]="editDescripcion" required>
+                            <label for="editFechaInicio">Fecha de Inicio</label>
+                            <input class="form-control" type="date" id="editFechaInicio" name="editFechaInicio"
+                                [(ngModel)]="editFechaInicio" required>
+                            <label for="editFechaFinal">Fecha final</label>
+                            <input class="form-control" type="date" id="editFechaFinal" name="editFechaFinal"
+                                [(ngModel)]="editFechaFinal" required>
+                            <label for="editImagen">Imagen</label>
+                            <input class="form-control" type="text" id="editImagen" name="editImagen"
+                                [(ngModel)]="editImagen" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

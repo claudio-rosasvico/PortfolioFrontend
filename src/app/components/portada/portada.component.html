@@ -1,0 +1,101 @@
+<div class="container-fluid p-2 my-1 portada">
+    <div>
+        <!--Portada-->
+        <img class="img-fluid fotoportada" src="{{iden.imgPortada}}" alt="Portada">
+    </div>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 align-center">
+            <div class="container-fluid">
+                <!--Foto perfil-->
+                <img class="img-fluid rounded-circle perfil rounded mx-auto d-block" src="{{iden.imgPerfil}}"
+                    alt="Foto de Perfil">
+            </div>
+            <div class="align-center">
+                <!--Nombre-->
+                <h3 class="display-6 text-center nombre"><strong> {{iden.nombre}} {{iden.apellido}}</strong></h3>
+                
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+        <div>
+            <!--Profesión-->
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4 text-center">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h4 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    <h4 >{{iden.profesion}}</h4>
+                                </button>
+                            </h4>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body"><p><strong>Telefono:</strong> {{iden.telefono}}<br>
+                                    <strong>Mail:</strong> {{iden.mail}}</p> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href=mailto:claudio.rosasvico@gmail.com> <img src="../../assets/mail.png" alt="mail"
+                            width="10%"></a>
+                    <a href="https://wa.me/54{{iden.telefono}}"> <img src="../../assets/icon-whatsapp.png"
+                            alt="telefono" width="13%"></a>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        
+        <h4 class="blockquote text-center">{{iden.acercaDe}}
+            <!-- Button de editar -->
+            <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn" data-bs-toggle="modal"
+                data-bs-target="#editAcercaDe">
+                <i class="fa-solid fa-pen-to-square"></i></button>
+        </h4>
+    </div>
+    <!--Ventana emergente Editar Proyecto -->
+    <div class="modal fade" id="editAcercaDe" tabindex="-1" aria-labelledby="editPersonaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form (ngSubmit)="editIdentidad()" novalidate #f="ngForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Persona</h5>
+                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                            <h4>x</h4>
+                        </button>
+                    </div>
+                    <div class="modal-body  form-group">
+                        <label for="nombre">Nombre</label>
+                        <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="nombre" required>
+                        <label for="apellido">Apellido</label>
+                        <input class="form-control" type="text" id="apellido" name="apellido" [(ngModel)]="apellido"
+                            required>
+                        <label for="acercaDe">Acerca de mi</label>
+                        <input class="form-control" type="text" id="acercaDe" name="acercaDe" [(ngModel)]="acercaDe"
+                            required>
+                        <label for="profesion">Profesión</label>
+                        <input class="form-control" type="text" id="profesion" name="profesion" [(ngModel)]="profesion"
+                            required>
+                        <label for="imgPerfil">Imagen de Perfil</label>
+                        <input class="form-control" type="text" id="imgPerfil" name="imgPerfil" [(ngModel)]="imgPerfil"
+                            required>
+                        <label for="imgPortada">Imagen de Portada</label>
+                        <input class="form-control" type="text" id="imgPortada" name="imgPortada"
+                            [(ngModel)]="imgPortada" required>
+                        <label for="mail">Mail</label>
+                        <input class="form-control" type="text" id="mail" name="mail" [(ngModel)]="mail" required>
+                        <label for="telefono">Telefono</label>
+                        <input class="form-control" type="text" id="telefono" name="telefono" [(ngModel)]="telefono"
+                            required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

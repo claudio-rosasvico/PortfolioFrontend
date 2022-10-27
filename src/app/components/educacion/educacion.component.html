@@ -1,0 +1,107 @@
+<div class="educacion">
+    <div class="container">
+        <div class="row">
+            <h4 class="display-6 titulo">Formación
+                <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn" data-bs-toggle="modal"
+                    data-bs-target="#addEdu">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </h4>
+        </div>
+        <!-- Ventana emergente Nueva Educacion-->
+        <div class="modal fade" id="addEdu" tabindex="-1" aria-labelledby="editProfesionLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="crearEdu()" novalidate #f="ngForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Añadir Formación</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                <h4>x</h4>
+                            </button>
+                        </div>
+                        <div class="modal-body  form-group">
+                            <label for="nivel">Nivel de Formación</label>
+                            <input class="form-control" type="text" id="nivel" name="nivel" [(ngModel)]="nivel"
+                                required>
+                            <label for="institucion">Institución Educativa</label>
+                            <input class="form-control" type="text" id="institucion" name="institucion"
+                                [(ngModel)]="institucion" required>
+                            <label for="localidad">Localidad</label>
+                            <input class="form-control" type="text" id="localidad" name="localidad"
+                                [(ngModel)]="localidad" required>
+                            <label for="titulo">Título</label>
+                            <input class="form-control" type="text" id="titulo" name="titulo" [(ngModel)]="titulo"
+                                required>
+                            <label for="imagen">Imagen</label>
+                            <input class="form-control" type="text" id="imagen" name="imagen" [(ngModel)]="imagen"
+                                required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Listado de experiecias -->
+    <div class="container">
+        <div class="row  m-2" *ngFor="let Educacion of edu">
+            <div class="col-1 d-none d-sm-block"><img src="{{Educacion.imagen}}" alt="Ministerio Producción" width=100%>
+            </div>
+            <div class="col-5">
+                <h5><strong>{{Educacion.institucion}}</strong></h5>
+                <p>{{Educacion.titulo}} ({{Educacion.nivel}})</p>
+                <p>{{Educacion.localidad}}</p>
+            </div>
+            <div class="col-5"></div>
+            <div class="col-1">
+                <!-- Button de editar -->
+                <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn" data-bs-toggle="modal"
+                    data-bs-target="#editEdu" (click)="tomarId(Educacion.id)">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <!-- Button de borrar -->
+                <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn"
+                    (click)="eliminarEdu(Educacion.id)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        </div>
+        <!--Ventana emergente Editar Experiencia -->
+        <div class="modal fade" id="editEdu" tabindex="-1" aria-labelledby="editEducacoinLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="editarEdu()" novalidate #f="ngForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar Educación</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                <h4>x</h4>
+                            </button>
+                        </div>
+                        <div class="modal-body  form-group">
+                            <label for="editNivel">Nivel de Formación</label>
+                            <input class="form-control" type="text" id="editNivel" name="editNivel"
+                                [(ngModel)]="editNivel" required>
+                            <label for="editInstitucion">Institución Educativa</label>
+                            <input class="form-control" type="text" id="editInstitucion" name="editInstitucion"
+                                [(ngModel)]="editInstitucion" required>
+                            <label for="editLocalidad">Localidad</label>
+                            <input class="form-control" type="text" id="editLocalidad" name="editLocalidad"
+                                [(ngModel)]="editLocalidad" required>
+                            <label for="editTitulo">Título</label>
+                            <input class="form-control" type="text" id="editTitulo" name="editTitulo"
+                                [(ngModel)]="editTitulo" required>
+                            <label for="editImagen">Imagen</label>
+                            <input class="form-control" type="text" id="editImagen" name="editImagen"
+                                [(ngModel)]="editImagen" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

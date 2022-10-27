@@ -1,0 +1,18 @@
+.fotoportada {
+    border-radius: 2%;
+    width: 100%;
+  }
+  .perfil{
+    margin-top: -15%;
+    margin-left: 10%;
+    width: 35%;
+  }
+
+  .portada {
+    background-color: white;
+    border-radius: 2%;
+}
+
+.nombre {
+  color: #39459b;
+}

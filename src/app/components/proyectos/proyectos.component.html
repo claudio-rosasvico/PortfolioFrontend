@@ -1,0 +1,100 @@
+<div class="proyectos">
+    <div class="container">
+        <div class="row">
+            <h4 class="display-6 titulo">Proyectos
+                <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn" data-bs-toggle="modal"
+                    data-bs-target="#addPro">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </h4>
+        </div>
+        <!-- Ventana emergente Nuevo Proyecto-->
+        <div class="modal fade" id="addPro" tabindex="-1" aria-labelledby="editProyectoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="crearPro()" novalidate #f="ngForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Añadir Proyecto</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                <h4>x</h4>
+                            </button>
+                        </div>
+                        <div class="modal-body  form-group">
+                            <label for="nombre">Nomrbe del Proyecto</label>
+                            <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="nombre"
+                                required>
+                            <label for="descripcion">Descripción del Proyecto</label>
+                            <input class="form-control" type="text" id="descripcion" name="descripcion"
+                                [(ngModel)]="descripcion" required>
+                            <label for="imagen">Imagen del Proyecto</label>
+                            <input class="form-control" type="text" id="imagen" name="imagen" [(ngModel)]="imagen"
+                                required>
+                            <label for="url">URL del Proyecto</label>
+                            <input class="form-control" type="text" id="url" name="url" [(ngModel)]="url" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Listado de proyectos -->
+    <div class="container">
+        <div class="row  m-2" *ngFor="let Proyecto of pro">
+            <div class="col-1 d-none d-sm-block"><a href="{{Proyecto.url}}"><img src="{{Proyecto.imagen}}"
+                        alt="Imagen de {{Proyecto.nombre}}" width=60></a>
+            </div>
+            <div class="col-5">
+                <h5><strong>{{Proyecto.nombre}}</strong></h5>
+                <p>{{Proyecto.descripcion}}</p>
+            </div>
+            <div class="col-5"></div>
+            <div class="col-1">
+                <!-- Button de editar -->
+                <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn" data-bs-toggle="modal"
+                    data-bs-target="#editPro" (click)="tomarId(Proyecto.id)">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <!-- Button de borrar -->
+                <button *ngIf="isAdmin" aria-label="Aria Name" type="button" class="btn"
+                    (click)="eliminarPro(Proyecto.id)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        </div>
+        <!--Ventana emergente Editar Proyecto -->
+        <div class="modal fade" id="editPro" tabindex="-1" aria-labelledby="editProyectoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form (ngSubmit)="editarPro()" novalidate #f="ngForm">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar Proyecto</h5>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                <h4>x</h4>
+                            </button>
+                        </div>
+                        <div class="modal-body  form-group">
+                            <label for="editNombre">Nomrbe del Proyecto</label>
+                            <input class="form-control" type="text" id="editNombre" name="editNombre"
+                                [(ngModel)]="editNombre" required>
+                            <label for="editDescripcion">Descripción del Proyecto</label>
+                            <input class="form-control" type="text" id="editDescripcion" name="editDescripcion"
+                                [(ngModel)]="editDescripcion" required>
+                            <label for="editImagen">Imagen del Proyecto</label>
+                            <input class="form-control" type="text" id="editImagen" name="editImagen"
+                                [(ngModel)]="editImagen" required>
+                            <label for="editUrl">URL del Proyecto</label>
+                            <input class="form-control" type="text" id="editUrl" name="editUrl" [(ngModel)]="editUrl"
+                                required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

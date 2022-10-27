@@ -1,0 +1,36 @@
+<div class="text-center" *ngIf="isLogged ; else loggedOut">
+    <h2>Ya has iniciado sesión</h2>
+</div>
+<ng-template #loggedOut>
+    <div class="wrapper">
+        <div class="inner">
+            <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+                <h3>BIENVENIDO/A</h3>
+                <div class="form-group">
+                    <label for="nombreUsuario">
+                        <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control"
+                            [(ngModel)]="nombreUsuario" required>
+                        <span>Usuario</span>
+                        <span class="border"></span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        <input type="text" name="password" id="password" class="form-control" [(ngModel)]="password"
+                            required>
+                        <span>Contraseña</span>
+                        <span class="border"></span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <button>Ingresar<i class="fa-solid fa-right-to-bracket"></i></button>
+                </div>
+            </form>
+            <br>
+            <p>Si no tenes usuario, podes registrarte aquí</p>
+            <button type="button" routerLink="/registro">Crear Cuenta
+            </button>
+
+        </div>
+    </div>
+</ng-template>
